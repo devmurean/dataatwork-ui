@@ -1,18 +1,23 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="p-2 relative">
+    <search-form></search-form>
+    <job-list></job-list>
+    <job-detail></job-detail>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import SearchForm from "@/components/SearchForm.vue";
+import JobList from "@/components/JobList.vue";
+import JobDetailVue from "../components/JobDetail.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    HelloWorld
-  }
-}
+    "search-form": SearchForm,
+    "job-list": JobList,
+    "job-detail": JobDetailVue,
+  },
+};
 </script>

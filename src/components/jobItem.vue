@@ -1,0 +1,24 @@
+<template>
+  <div class="job-item">
+    <!-- job title -->
+    <p class="job-item__title">Job Title</p>
+    <!-- show detail trigger -->
+    <button class="job-item__show-detail-trigger">
+      <fa-icon icon="chevron-circle-right"></fa-icon>
+    </button>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.job-item {
+  @apply border border-blue-500 w-full max-w-screen-sm mx-auto mb-6 relative p-2;
+}
+
+.job-item__title {
+  @apply text-blue-500 text-left;
+}
+
+.job-item__show-detail-trigger {
+  @apply absolute right-0 top-0 border-l border-blue-500 p-2;
+}
+</style>
