@@ -3,11 +3,23 @@
     <!-- job title -->
     <p class="job-item__title">Job Title</p>
     <!-- show detail trigger -->
-    <button class="job-item__show-detail-trigger">
+    <button class="job-item__show-detail-trigger" @click="toggleJobDetailVisibility">
       <fa-icon icon="chevron-circle-right"></fa-icon>
     </button>
   </div>
 </template>
+
+<script>
+import { mapMutations } from "vuex";
+
+export default {
+  name: "JobItem",
+
+  methods: {
+    ...mapMutations(["toggleJobDetailVisibility"]),
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .job-item {

@@ -1,7 +1,7 @@
 <template>
-  <div class="job-detail">
+  <div class="job-detail" v-if="jobDetailVisibility">
     <!-- hide this component trigger -->
-    <button class="job-detail__hide-trigger">
+    <button class="job-detail__hide-trigger" @click="toggleJobDetailVisibility">
       <fa-icon icon="times"></fa-icon>
     </button>
 
@@ -39,9 +39,25 @@
   </div>
 </template>
 
+<script>
+import { mapMutations, mapGetters } from "vuex";
+
+export default {
+  name: "JobDetail",
+  computed: {
+    ...mapGetters(["jobDetailVisibility"]),
+  },
+  methods: {
+    ...mapMutations(["toggleJobDetailVisibility"]),
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 .job-detail {
-  @apply absolute bg-white w-full max-w-screen-sm left-0 top-0 h-screen p-2;
+  transform: translateX(-50%);
+  left: 50%;
+  @apply absolute bg-white w-full max-w-screen-sm top-0 h-screen p-2;
 }
 
 .job-detail__hide-trigger {
