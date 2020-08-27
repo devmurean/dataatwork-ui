@@ -36,7 +36,6 @@ export default {
       });
 
       this.storeJobs(response.data);
-      console.log(response.data);
     },
     ...mapActions(["storeJobs"]),
   },

@@ -6,16 +6,16 @@
     </button>
 
     <!-- Title: Related Skills -->
-    <p class="job-detail__title">Job Title</p>
+    <p class="job-detail__title">{{ selectedJob.suggestion }}</p>
     <p class="job-detail__subtitle">Suitable Skills</p>
 
     <!-- box -->
-    <div class="box">
+    <div class="box" v-for="skill in relatedSkills" :key="skill.skill_uuid">
       <!-- box__skill-title -->
-      <p class="box__skill-title">Skill Name [Skill Type]</p>
+      <p class="box__skill-title">{{ skill.skill_name }}</p>
 
       <!-- box__description -->
-      <p class="box__description">Bla</p>
+      <p class="box__description">{{ skill.description }}</p>
 
       <!-- box__meta -->
       <div class="box__meta">
@@ -24,7 +24,7 @@
           <!-- box__meta__importance__label -->
           <div class="box__meta__importance__label">Importance</div>
           <!-- box__meta__importance__number -->
-          <div class="box__meta__importance__number">4.5</div>
+          <div class="box__meta__importance__number">{{ skill.importance }}</div>
         </div>
 
         <!-- box__meta__proficiency -->
@@ -32,7 +32,7 @@
           <!-- box__meta__proficiency__label -->
           <div class="box__meta__proficiency__label">Proficiency</div>
           <!-- box__meta__proficiency__number -->
-          <div class="box__meta__proficiency__number">6.3</div>
+          <div class="box__meta__proficiency__number">{{ skill.level }}</div>
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@ import { mapMutations, mapGetters } from "vuex";
 export default {
   name: "JobDetail",
   computed: {
-    ...mapGetters(["jobDetailVisibility"]),
+    ...mapGetters(["jobDetailVisibility", "selectedJob", "relatedSkills"]),
   },
   methods: {
     ...mapMutations(["toggleJobDetailVisibility"]),
@@ -73,7 +73,15 @@ export default {
 }
 
 .box {
-  @apply border border-gray-500 p-2 rounded;
+  @apply border border-gray-500 p-2 rounded mb-2;
+}
+
+.box__skill-title {
+  @apply text-left text-lg capitalize font-bold mb-2;
+}
+
+.box__description {
+  @apply text-left;
 }
 
 .box__meta {
