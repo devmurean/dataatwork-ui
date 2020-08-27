@@ -1,13 +1,47 @@
 <template>
   <div class="search-form">
     <!-- input -->
-    <input autofocus class="search-form__input" type="text" />
+    <input autofocus class="search-form__input" type="text" v-model="searchText" />
     <!-- trigger search -->
-    <button class="search-form__trigger">
+    <button class="search-form__trigger" @click="searchJob">
       <fa-icon icon="search"></fa-icon>
     </button>
+    <p v-if="showErrorMessage" class="text-red-500">Please type something on the form</p>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+import { mapActions } from "vuex";
+
+export default {
+  name: "SearchForm",
+  data() {
+    return {
+      searchText: "",
+      showErrorMessage: false,
+    };
+  },
+  methods: {
+    async searchJob() {
+      if (this.searchText === "") {
+        this.showErrorMessage = true;
+        return false;
+      }
+      let baseUrl = "http://api.dataatwork.org/v1/jobs/autocomplete";
+
+      let response = await axios({
+        url: `${baseUrl}?contains=${this.searchText}`,
+        method: "get",
+      });
+
+      this.storeJobs(response.data);
+      console.log(response.data);
+    },
+    ...mapActions(["storeJobs"]),
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .search-form {

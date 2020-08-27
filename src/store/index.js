@@ -5,17 +5,25 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    jobDetailVisibility: false
+    jobDetailVisibility: false,
+    jobs: []
   },
   mutations: {
     toggleJobDetailVisibility(state) {
       state.jobDetailVisibility = !state.jobDetailVisibility
+    },
+    storeJobs(state, jobs) {
+      state.jobs = jobs
     }
   },
   getters: {
-    jobDetailVisibility: state => state.jobDetailVisibility
+    jobDetailVisibility: state => state.jobDetailVisibility,
+    jobList: state => state.jobs
   },
   actions: {
+    async storeJobs({ commit }, jobs) {
+      commit('storeJobs', jobs)
+    }
   },
   modules: {
   }

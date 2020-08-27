@@ -1,7 +1,7 @@
 <template>
   <div class="job-item">
     <!-- job title -->
-    <p class="job-item__title">Job Title</p>
+    <p class="job-item__title">{{ job.suggestion }}</p>
     <!-- show detail trigger -->
     <button class="job-item__show-detail-trigger" @click="toggleJobDetailVisibility">
       <fa-icon icon="chevron-circle-right"></fa-icon>
@@ -14,7 +14,12 @@ import { mapMutations } from "vuex";
 
 export default {
   name: "JobItem",
-
+  props: {
+    job: {
+      required: true,
+      type: Object,
+    },
+  },
   methods: {
     ...mapMutations(["toggleJobDetailVisibility"]),
   },
@@ -31,6 +36,6 @@ export default {
 }
 
 .job-item__show-detail-trigger {
-  @apply absolute right-0 top-0 border-l border-blue-500 p-2;
+  @apply absolute right-0 top-0 text-blue-500 p-2;
 }
 </style>

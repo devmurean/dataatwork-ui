@@ -1,7 +1,7 @@
 <template>
   <div class="job-list">
     <!-- job items -->
-    <job-item></job-item>
+    <job-item v-for="job in jobList" :key="job.uuid" :job="job"></job-item>
     <!-- load more trigger -->
     <button class="job-list__load-more-trigger">
       <fa-icon icon="chevron-down"></fa-icon>
@@ -11,11 +11,15 @@
 
 <script>
 import jobItemVue from "./jobItem.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "JobList",
   components: {
     "job-item": jobItemVue,
+  },
+  computed: {
+    ...mapGetters(["jobList"]),
   },
 };
 </script>
