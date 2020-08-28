@@ -6,11 +6,11 @@
     </button>
 
     <!-- Title: Related Skills -->
+    <p class="job-detail__subtitle">Suitable Skills of</p>
     <p class="job-detail__title">{{ selectedJob.suggestion }}</p>
-    <p class="job-detail__subtitle">Suitable Skills</p>
 
     <!-- box -->
-    <div class="box" v-for="skill in relatedSkills" :key="skill.skill_uuid">
+    <div class="box shadow" v-for="skill in relatedSkills" :key="skill.skill_uuid">
       <!-- box__skill-title -->
       <p class="box__skill-title">{{ skill.skill_name }}</p>
 
@@ -20,7 +20,7 @@
       <!-- box__meta -->
       <div class="box__meta">
         <!-- box__meta__importance -->
-        <div class="box__meta-item box__meta__importance">
+        <div class="box__meta-item box__meta__importance shadow">
           <!-- box__meta__importance__label -->
           <div class="box__meta__importance__label">Importance</div>
           <!-- box__meta__importance__number -->
@@ -28,7 +28,7 @@
         </div>
 
         <!-- box__meta__proficiency -->
-        <div class="box__meta-item box__meta__proficiency">
+        <div class="box__meta-item box__meta__proficiency shadow">
           <!-- box__meta__proficiency__label -->
           <div class="box__meta__proficiency__label">Proficiency</div>
           <!-- box__meta__proficiency__number -->
@@ -57,7 +57,7 @@ export default {
 .job-detail {
   transform: translateX(-50%);
   left: 50%;
-  @apply absolute bg-white w-full max-w-screen-sm top-0 h-screen p-2;
+  @apply absolute bg-gray-800 w-full max-w-screen-xl top-0 min-h-screen p-2 text-white;
 }
 
 .job-detail__hide-trigger {
@@ -65,7 +65,7 @@ export default {
 }
 
 .job-detail__title {
-  @apply font-bold text-2xl mt-4;
+  @apply font-bold text-2xl mb-8 -mt-6 text-center;
 }
 
 .job-detail__subtitle {
@@ -73,7 +73,7 @@ export default {
 }
 
 .box {
-  @apply border border-gray-500 p-2 rounded mb-2;
+  @apply border-t-2 border-blue-500 p-4 mb-4 max-w-md mx-auto;
 }
 
 .box__skill-title {
@@ -89,11 +89,11 @@ export default {
 }
 
 .box__meta-item {
-  @apply inline-block p-2 mx-2 rounded-md;
+  @apply inline-block p-2 px-4 mx-2 border-t-2;
 }
 
 .box__meta__importance {
-  @apply bg-yellow-500;
+  @apply border-yellow-500;
 }
 .box__meta__importance__label {
 }
@@ -102,7 +102,7 @@ export default {
 }
 
 .box__meta__proficiency {
-  @apply bg-blue-600 text-white;
+  @apply border-red-500;
 }
 .box__meta__proficiency__label {
 }

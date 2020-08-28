@@ -51,7 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 .job-item {
-  @apply border border-blue-500 w-full max-w-screen-sm mx-auto mb-6 relative p-2;
+  @apply border border-blue-500 max-w-xs mx-auto mb-6 relative p-2;
 }
 
 .job-item__title {

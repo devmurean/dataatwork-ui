@@ -8,10 +8,10 @@ import '@/assets/css/style.css'
 
 // Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch, faChevronDown, faChevronCircleRight, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faChevronDown, faChevronCircleRight, faTimes, faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faSearch, faChevronDown, faChevronCircleRight, faTimes)
+library.add(faSearch, faChevronDown, faChevronCircleRight, faTimes, faQuoteLeft)
 Vue.component('fa-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false

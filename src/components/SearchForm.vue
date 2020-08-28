@@ -1,7 +1,13 @@
 <template>
   <div class="search-form">
     <!-- input -->
-    <input autofocus class="search-form__input" type="text" v-model="searchText" />
+    <input
+      autofocus
+      class="search-form__input"
+      type="text"
+      v-model="searchText"
+      placeholder="Job Keyword"
+    />
     <!-- trigger search -->
     <button class="search-form__trigger" @click="searchJob">
       <fa-icon icon="search"></fa-icon>
@@ -48,7 +54,7 @@ export default {
 }
 
 .search-form__input {
-  @apply border border-blue-500 p-2;
+  @apply border border-blue-500 border-r-0 p-2 bg-transparent text-white;
 }
 
 .search-form__trigger {

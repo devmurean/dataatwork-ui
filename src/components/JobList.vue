@@ -1,11 +1,11 @@
 <template>
-  <div class="job-list">
+  <div class="job-list" v-if="!jobDetailVisibility">
     <!-- job items -->
     <job-item v-for="job in jobList" :key="job.uuid" :job="job"></job-item>
     <!-- load more trigger -->
-    <button class="job-list__load-more-trigger">
+    <!-- <button class="job-list__load-more-trigger">
       <fa-icon icon="chevron-down"></fa-icon>
-    </button>
+    </button>-->
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
     "job-item": jobItemVue,
   },
   computed: {
-    ...mapGetters(["jobList"]),
+    ...mapGetters(["jobList", "jobDetailVisibility"]),
   },
 };
 </script>
