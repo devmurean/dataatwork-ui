@@ -1,5 +1,5 @@
 <template>
-  <div class="job-item">
+  <div class="job-item shadow">
     <!-- job title -->
     <p class="job-item__title">{{ job.suggestion }}</p>
     <!-- show detail trigger -->
@@ -51,14 +51,14 @@ export default {
 
 <style lang="scss" scoped>
 .job-item {
-  @apply border border-blue-500 max-w-xs mx-auto mb-6 relative p-2;
+  @apply border-t-2 border-blue-500 w-full mx-auto relative p-4 bg-transparent text-white;
 }
 
 .job-item__title {
-  @apply text-blue-500 text-left;
+  @apply text-left;
 }
 
 .job-item__show-detail-trigger {
-  @apply absolute right-0 top-0 text-blue-500 p-2;
+  @apply absolute right-0 top-0 p-4;
 }
 </style>

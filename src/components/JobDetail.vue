@@ -9,30 +9,33 @@
     <p class="job-detail__subtitle">Suitable Skills of</p>
     <p class="job-detail__title">{{ selectedJob.suggestion }}</p>
 
-    <!-- box -->
-    <div class="box shadow" v-for="skill in relatedSkills" :key="skill.skill_uuid">
-      <!-- box__skill-title -->
-      <p class="box__skill-title">{{ skill.skill_name }}</p>
+    <!-- skills list -->
+    <div class="skills-box">
+      <!-- box -->
+      <div class="box shadow" v-for="skill in relatedSkills" :key="skill.skill_uuid">
+        <!-- box__skill-title -->
+        <p class="box__skill-title">{{ skill.skill_name }}</p>
 
-      <!-- box__description -->
-      <p class="box__description">{{ skill.description }}</p>
+        <!-- box__description -->
+        <p class="box__description">{{ skill.description }}</p>
 
-      <!-- box__meta -->
-      <div class="box__meta">
-        <!-- box__meta__importance -->
-        <div class="box__meta-item box__meta__importance shadow">
-          <!-- box__meta__importance__label -->
-          <div class="box__meta__importance__label">Importance</div>
-          <!-- box__meta__importance__number -->
-          <div class="box__meta__importance__number">{{ skill.importance }}</div>
-        </div>
+        <!-- box__meta -->
+        <div class="box__meta">
+          <!-- box__meta__importance -->
+          <div class="box__meta-item box__meta__importance shadow">
+            <!-- box__meta__importance__label -->
+            <div class="box__meta__importance__label">Importance</div>
+            <!-- box__meta__importance__number -->
+            <div class="box__meta__importance__number">{{ skill.importance }}</div>
+          </div>
 
-        <!-- box__meta__proficiency -->
-        <div class="box__meta-item box__meta__proficiency shadow">
-          <!-- box__meta__proficiency__label -->
-          <div class="box__meta__proficiency__label">Proficiency</div>
-          <!-- box__meta__proficiency__number -->
-          <div class="box__meta__proficiency__number">{{ skill.level }}</div>
+          <!-- box__meta__proficiency -->
+          <div class="box__meta-item box__meta__proficiency shadow">
+            <!-- box__meta__proficiency__label -->
+            <div class="box__meta__proficiency__label">Proficiency</div>
+            <!-- box__meta__proficiency__number -->
+            <div class="box__meta__proficiency__number">{{ skill.level }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -72,8 +75,24 @@ export default {
   @apply font-bold -mt-2 mb-6;
 }
 
+.skills-box {
+  @apply grid grid-cols-1 gap-6;
+}
+
+@screen md {
+  .skills-box {
+    @apply grid-cols-2;
+  }
+}
+
+@screen lg {
+  .skills-box {
+    @apply grid-cols-3;
+  }
+}
+
 .box {
-  @apply border-t-2 border-blue-500 p-4 mb-4 max-w-md mx-auto;
+  @apply border-t-2 border-blue-500 p-4 mb-4 w-full mx-auto;
 }
 
 .box__skill-title {
