@@ -10,14 +10,20 @@
     <p class="job-detail__title">{{ selectedJob.suggestion }}</p>
 
     <!-- skills list -->
-    <div class="skills-box">
+    <transition-group
+      class="skills-box"
+      tag="div"
+      enter-active-class="animate__animated animate__fadeIn"
+    >
       <!-- box -->
       <div class="box shadow" v-for="skill in relatedSkills" :key="skill.skill_uuid">
-        <!-- box__skill-title -->
-        <p class="box__skill-title">{{ skill.skill_name }}</p>
+        <div class="box__main">
+          <!-- box__skill-title -->
+          <p class="box__main__skill-title">{{ skill.skill_name }}</p>
 
-        <!-- box__description -->
-        <p class="box__description">{{ skill.description }}</p>
+          <!-- box__description -->
+          <p class="box__main__description">{{ skill.description }}</p>
+        </div>
 
         <!-- box__meta -->
         <div class="box__meta">
@@ -32,13 +38,13 @@
           <!-- box__meta__proficiency -->
           <div class="box__meta-item box__meta__proficiency shadow">
             <!-- box__meta__proficiency__label -->
-            <div class="box__meta__proficiency__label">Proficiency</div>
+            <div class="box__meta__proficiency__label">Level</div>
             <!-- box__meta__proficiency__number -->
             <div class="box__meta__proficiency__number">{{ skill.level }}</div>
           </div>
         </div>
       </div>
-    </div>
+    </transition-group>
   </div>
 </template>
 
@@ -64,7 +70,7 @@ export default {
 }
 
 .job-detail__hide-trigger {
-  @apply p-2 text-2xl;
+  @apply p-2 text-2xl mx-auto block;
 }
 
 .job-detail__title {
@@ -72,7 +78,7 @@ export default {
 }
 
 .job-detail__subtitle {
-  @apply font-bold -mt-2 mb-6;
+  @apply font-bold -mt-2 mb-6 text-center;
 }
 
 .skills-box {
@@ -92,27 +98,43 @@ export default {
 }
 
 .box {
-  @apply border-t-2 border-blue-500 p-4 mb-4 w-full mx-auto;
+  overflow: hidden;
+  z-index: 2;
+  @apply border-t-2 border-blue-500 p-4 mb-4 w-full mx-auto grid grid-rows-3 relative;
+
+  &::before {
+    content: " ";
+
+    bottom: 0;
+    right: 0;
+    transform: translate(50%, 50%);
+    @apply absolute w-64 h-64 block bg-transparent border border-blue-500 rounded-full;
+  }
 }
 
-.box__skill-title {
+.box__main {
+  @apply row-span-2;
+}
+
+.box__main__skill-title {
   @apply text-left text-lg capitalize font-bold mb-2;
 }
 
-.box__description {
+.box__main__description {
   @apply text-left;
 }
 
 .box__meta {
-  @apply my-4;
+  z-index: 3;
+  @apply row-span-1 mt-4 text-center relative;
 }
 
 .box__meta-item {
-  @apply inline-block p-2 px-4 mx-2 border-t-2;
+  @apply inline-block p-2 px-4 mx-2 border-t-2 bg-gray-800;
 }
 
 .box__meta__importance {
-  @apply border-yellow-500;
+  @apply border-yellow-500 w-2/5;
 }
 .box__meta__importance__label {
 }
@@ -121,7 +143,7 @@ export default {
 }
 
 .box__meta__proficiency {
-  @apply border-red-500;
+  @apply border-red-500 w-2/5;
 }
 .box__meta__proficiency__label {
 }

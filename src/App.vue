@@ -1,28 +1,35 @@
 <template>
-  <div id="app">
+  <div>
+    <div
+      v-if="errorBoxVisibility"
+      class="w-full p-2 bg-red-600 text-center text-gray-800"
+    >{{ errorBoxMessage }}</div>
     <div class="main-navigation">
-      <router-link to="/">Home</router-link>|
+      <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
     </div>
     <router-view />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { mapGetters } from "vuex";
 
+export default {
+  name: "App",
+  computed: {
+    ...mapGetters(["errorBoxVisibility", "errorBoxMessage"]),
+  },
+};
+</script>
+
+<style lang="scss">
 .main-navigation {
-  padding: 30px;
+  @apply p-4 text-center;
 
   a {
     font-weight: bold;
-    @apply text-gray-600;
+    @apply text-gray-600 mx-2;
 
     &.router-link-exact-active {
       @apply text-blue-500;

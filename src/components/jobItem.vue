@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapActions } from "vuex";
 import axios from "axios";
 
 export default {
@@ -25,21 +25,28 @@ export default {
     async showJobDetail(jobUUID) {
       this.toggleJobDetailVisibility();
       this.selectJob(jobUUID);
+      this.toggleLoadingLayerVisibility();
       this.fetchSkills(jobUUID);
     },
     async fetchSkills(jobUUID) {
-      let url = `http://api.dataatwork.org/v1/jobs/${jobUUID}/related_skills`;
-      let response = await axios({
-        method: "get",
-        url: url,
-      });
-      let skills = response.data.skills.filter(
-        ({ importance, level }) => importance >= 3 && level >= 3
-      );
+      try {
+        let axiosParams = {
+          method: "get",
+          url: `http://api.dataatwork.org/v1/jobs/${jobUUID}/related_skills`,
+        };
+        let response = await axios(axiosParams);
+        let skills = response.data.skills.filter(
+          ({ importance, level }) => importance >= 3 && level >= 3
+        );
 
-      console.log(skills);
-      this.storeRelatedSkills(skills);
+        this.storeRelatedSkills(skills);
+      } catch (error) {
+        this.showErrorBox("There is an error");
+      }
+
+      this.toggleLoadingLayerVisibility();
     },
+    ...mapActions(["showErrorBox", "toggleLoadingLayerVisibility"]),
     ...mapMutations([
       "toggleJobDetailVisibility",
       "selectJob",
@@ -55,6 +62,7 @@ export default {
 }
 
 .job-item__title {
+  max-width: 95%;
   @apply text-left;
 }
 

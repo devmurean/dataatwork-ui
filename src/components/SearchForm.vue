@@ -12,7 +12,6 @@
     <button class="search-form__trigger" @click="searchJob">
       <fa-icon icon="search"></fa-icon>
     </button>
-    <p v-if="showErrorMessage" class="text-red-500">Please type something on the form</p>
   </div>
 </template>
 
@@ -30,27 +29,43 @@ export default {
   },
   methods: {
     async searchJob() {
-      if (this.searchText === "") {
-        this.showErrorMessage = true;
-        return false;
+      this.toggleLoadingLayerVisibility();
+      try {
+        if (this.searchText === "") {
+          throw new Error("Please fill the form");
+        }
+        let baseUrl = "http://api.dataatwork.org/v1/jobs/autocomplete";
+        let { data } = await axios({
+          url: `${baseUrl}?contains=${this.searchText}`,
+          method: "get",
+        });
+
+        this.storeJobs(data);
+      } catch (error) {
+        let errorMessage = "";
+        if (error.response !== undefined) {
+          // console.log(error.response);
+          errorMessage = error.response.data.error.message;
+        } else {
+          // console.log(error);
+          errorMessage = error.message;
+        }
+        this.showErrorBox(errorMessage);
       }
-      let baseUrl = "http://api.dataatwork.org/v1/jobs/autocomplete";
-
-      let response = await axios({
-        url: `${baseUrl}?contains=${this.searchText}`,
-        method: "get",
-      });
-
-      this.storeJobs(response.data);
+      this.toggleLoadingLayerVisibility();
     },
-    ...mapActions(["storeJobs"]),
+    ...mapActions([
+      "storeJobs",
+      "showErrorBox",
+      "toggleLoadingLayerVisibility",
+    ]),
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .search-form {
-  @apply mb-8 max-w-screen-sm mx-auto;
+  @apply mb-8 max-w-screen-sm mx-auto text-center;
 }
 
 .search-form__input {

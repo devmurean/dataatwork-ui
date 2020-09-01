@@ -1,12 +1,19 @@
 <template>
-  <div class="job-list md:grid-cols-2 lg:grid-cols-3" v-if="!jobDetailVisibility">
-    <!-- job items -->
+  <!-- <div class="job-list" v-if="!jobDetailVisibility"> -->
+  <!-- job items -->
+  <transition-group
+    class="job-list"
+    v-if="!jobDetailVisibility"
+    tag="div"
+    enter-active-class="animate__animated animate__fadeIn"
+  >
     <job-item v-for="job in jobList" :key="job.uuid" :job="job"></job-item>
-    <!-- load more trigger -->
-    <!-- <button class="job-list__load-more-trigger">
+  </transition-group>
+  <!-- load more trigger -->
+  <!-- <button class="job-list__load-more-trigger">
       <fa-icon icon="chevron-down"></fa-icon>
-    </button>-->
-  </div>
+  </button>-->
+  <!-- </div> -->
 </template>
 
 <script>
@@ -27,6 +34,14 @@ export default {
 <style lang="scss" scoped>
 .job-list {
   @apply w-full max-w-screen-xl mx-auto grid grid-cols-1 gap-6 px-2;
+
+  @screen md {
+    @apply grid-cols-2;
+  }
+
+  @screen lg {
+    @apply grid-cols-3;
+  }
 }
 
 .job-list__load-more-trigger {
