@@ -15,7 +15,7 @@
 
 <style lang="scss" scoped>
 .about {
-  @apply text-white p-4;
+  @apply text-white p-4 max-w-md mx-auto;
 }
 
 .about__quote-icon {
