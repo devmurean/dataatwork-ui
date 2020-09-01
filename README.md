@@ -1,4 +1,7 @@
-# dataatwork-ui
+# DATAATWORK UI
+Search a profession then dig deeper to see related skills.
+
+Using `vuex` to manage application states.
 
 ## Project setup
 ```
@@ -27,6 +30,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-## TODO
-- responsive layout for larger screens
